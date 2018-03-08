@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container">
+    <ul>
+                                    <li>
+                                        <strong>National Technostav </strong>– <a href="http://www.sirmvit.edu/">Sir M Visveswaraya Institute of Technology</a>, By Visveswaraya Technological University, Belguam, Karanataka,India 
+                                    </li>
+                                    <li>
+                                        <strong>National Symposium</strong> – <a href="http://www.msrit.edu/">M S Ramaiah Institute of Technology</a>, Bangalore, affiliated and conducted by Coventry University, UK
+                                    </li>
+                                    <li>
+                                        <strong>National Workshop</strong> - Sponsored by Department of Science and Technology and Ministry of Human Resource                              Development(DST-MHRD),New Delhi - <a href="http://www.gmrit.org/">GMR Institute of Technology</a>, Andhra Pradesh, India
+                                    </li>
+                                    <li>
+                                        <strong>International Conference iCERT 2010</strong> participated in Park College of Engineering and Technology, Tamil Nadu, India 
+                                    </li>
+                                    <li>
+                                        <strong>Conference - Intel Corporation International Conference,</strong> Sir M Visveswaraya Institute of Technology,Krishnadevaraiah          Educational Trust(KET), Bangalore, India. <a href="http://www.sirmvit.edu/">Sir MVIT | Sir M Visvesvaraya Institute of Technology </a>
+                                    </li>
+                                </ul>
+   <% workshops.forEach(function(workshop){ %>
+  <ul>
+    <li>
+      <%- workshop.workshop %>
+    </li>
+  </ul>
+<% }); %>
+   <a class="btn btn-primary" href="/resume/workshop/new">add new workshop</a>
+  <div class="form-group">
+              <a id="back" href="/resume">GO BACK</a>
+           </div>
+  </div>
+
+<style>
+</div>
