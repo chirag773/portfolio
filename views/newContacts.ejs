@@ -1,11 +1,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="">
-    <% contacts.forEach(function(contact){ %>
-    <strong>Name:- </strong><em><%- contact.name %></em> 
-     <strong>Email:- </strong><em><%- contact.email %></em>
-  <strong>Message:- </strong><em><%- contact.message %></em>
-  <br>
+<% contacts.forEach(function(contact){ %>
+  <strong>Name:- </strong><em><%= contact.name %></em> 
+     <strong>Email:- </strong><em><%= contact.email %></em>
+  <strong>Message:- </strong><em><%= contact.message %></em>
+  <hr>
 <% }); %>
   <div class="form-group">
               <a id="back" href="/home">GO BACK</a>

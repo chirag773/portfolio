@@ -11,6 +11,7 @@ var Publication       = require("./models/publication");
 var Contribution      = require("./models/contribution");
 var Workshop          = require("./models/workshop");
 var Contact           = require("./models/contact");
+var Membership        = require("./models/membership");
 
 mongoose.connect("mongodb://localhost/portfolio", {
   useMongoClient: true
@@ -149,13 +150,6 @@ app.get("/resume/workshop", function(req, res) {
 
 //==================================================new workshop================================================//
 
-
-
-app.get("/resume/workshop/new",function(req,res){
-  res.render("newWorkshop");
-});
-
-
 app.post("/resume/workshop",function(req,res){
   var workshop = { workshop:req.body.workshop}
   Workshop.create(workshop ,function(err,newWorkshop){
@@ -168,27 +162,29 @@ app.post("/resume/workshop",function(req,res){
 });
 
 
+app.get("/resume/workshop/new",function(req,res){
+  res.render("newWorkshop");
+});
+
 
 //=======================================================Contact=============================================//
 
-app.get("/newcontact",function(req,res){
-  res.render("newContacts")
-});
 
-app.get("/contact", function(req, res) {
+app.get("/contected", function(req, res) {
   Contact.find({},function(err, contacts){
     if(err){
       console.log(err)
     } else{
-      res.render("contact",{contacts:contacts}); 
+      res.render("newContacts",{contacts:contacts}); 
     }
   });
 });
 
 
-app.post("/contact/new",function(req,res){
+
+app.post("/contact",function(req,res){
   var contact = { 
-                  name:req.body.name,
+                  name:req.body.Name,
                   email:req.body.email,
                   message:req.body.message
                 }
@@ -200,6 +196,57 @@ app.post("/contact/new",function(req,res){
     }
   });
 });
+
+
+app.get("/contact",function(req,res){
+  res.render("contact")
+});
+
+
+
+
+
+
+//================================================membership===================================================//
+
+
+
+app.get("/membership", function(req, res) {
+  Membership.find({},function(err, memberships){
+    if(err){
+      console.log(err)
+    } else{
+      res.render("membership",{memberships:memberships}); 
+    }
+  });
+});
+
+
+
+//==================================================new membership================================================//
+
+app.post("/membership",function(req,res){
+  var membership = { membership:req.body.membership}
+  Membership.create(membership ,function(err,newMembership){
+    if(err){
+      console.log(err);
+    } else{
+      res.redirect("/membership");
+    }
+  });
+});
+
+
+app.get("/membership/new",function(req,res){
+  res.render("newMembership");
+});
+
+
+
+
+
+
+
 
 
 

@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<div class="container" style="text-align:center;">
+<h1>MEMBERSHIP OF ACADEMIC BODIES </h1>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Indian Society for Technical Education -ISTE </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Computer Society of India - CSI </em></h4> 
+  </div>
+  <div>
+     <h4><i class="fa fa-check"></i><em> Membership of Association of Computing Machinery - ACM </em></h4> 
+  </div>
+  <h1>MEMBERSHIP OF PROFESSIONAL BODIES </h1>
+   
+  <div>
+      <h4><i class="fa fa-check"></i><em> Life Member - Indian Society for Technical Education - ISTE </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Life Member - Computer Society of India - CSI  </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Life Member - Association of Computing Machinery - ACM </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Life Member - International Association of Engineers - IAEng </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Member of International Journal of Application or Innovation in Engineering and Management  </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Member of The Society of Digital Information and Wireless Communications -SDIWC </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Member of Computer Science Teachers Association – CSTA </em></h4> 
+  </div>
+  <div>
+      <h4><i class="fa fa-check"></i><em> Member – Office of the National Digital Library Project [MHRD], Central Library [ ISO-9001:2008
+Certified ], Indian Institute of Technology, Kharagpur  </em></h4> 
+  </div>
+  
+  <% memberships.forEach(function(membership){ %>
+    <div> 
+      <h4><i class="fa fa-check"></i><em> <%- membership.membership %></em></h4>
+    </div>
+<% }); %>
+  <a class="btn btn-primary" href="/membership/new">add new membership</a>
+  <div class="form-group">
+              <a id="back" href="/">GO BACK</a>
+           </div>
+</div>
+
+
+<style>
+
+  h1{
+    color:red;
+  }
+</style>
