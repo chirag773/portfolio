@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container"> 
 <ul>
     <li><h4><strong>Pavan Gujjar Panduranga Rao</strong>, <em>"The MIR Flickr Retrieval Evaluation Proposal Based on User Tags and Textual   Passwords", International Journal of Advanced Engineering, Management and Science, Vol.3,Issue-4, 2017 Pg 343- 349</em> </h4> </li>
@@ -18,15 +19,28 @@
         <li>
           <h4>
             <em><%- publication.description %></em>
+            <% if(!currentUser){ %>
+                  <%} else {%>
+            
+            <a class="btn btn-primary" href="/resume/publication/<%= publication._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
+            <%}%>
           </h4>
+          
         </li>
       </ul>
+   
+
     <% }); %>
-      <a class="btn btn-primary" href="/resume/publication/new">add new publication</a>
+  <% if(!currentUser){ %>
+                  <%} else {%>
+      <a class="btn btn-success" style="text-align:center" href="/resume/publication/new">add new publication <i class="fa fa-arrow-circle-right"></i></a>
+  <%}%>
       <div class="form-group">
-                  <a id="back" href="/resume">GO BACK</a>
+                  <a id="back" class="btn btn-primary"  style="margin-top:10px;
+                                                               text-align:center" href="/resume"><i class="fa fa-arrow-circle-left"></i> GO BACK</a>
                </div>
     </div>
 
 
+<% include partials/footer %>
 

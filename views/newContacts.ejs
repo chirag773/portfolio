@@ -1,15 +1,28 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<div class="">
 <% contacts.forEach(function(contact){ %>
-  <strong>Name:- </strong><em><%= contact.name %></em> 
-     <strong>Email:- </strong><em><%= contact.email %></em>
-  <strong>Message:- </strong><em><%= contact.message %></em>
+<div class="row">
+
+  <div class="col col-lg-4 col-md-4 col-sm-12 col-xs-12">
+  <div>
+    <strong>Name:- </strong><em><%= contact.name %></em> 
+  </div>
+    <br>
+  <div>
+    <strong>Email:- </strong><em><%= contact.email %></em>
+  </div>
+  </div>  
+  <div class="col col-lg-8 col-md-8 col-sm-12 col-xs-12">
+  <div>
+    <strong>Message:- </strong><em><%= contact.message %></em>
+  </div>  
+  </div>
+  </div>
   <hr>
 <% }); %>
   <div class="form-group">
-              <a id="back" href="/home">GO BACK</a>
+              <a id="back" href="/">GO BACK</a>
            </div>
-</div>
+
 
   

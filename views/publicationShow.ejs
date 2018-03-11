@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div class="container"> 
+  <ul>
+    <li>
+            <h4><em><%- publication.description %></em></h4>
+      <form id="delete" action="/resume/publication/<%= publication._id %>?_method=DELETE" method="POST">
+       <button class="btn btn-danger">Delete</button>
+          </li>
+  </ul>
+  
+     </form>
+         
+</div>

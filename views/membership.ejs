@@ -3,7 +3,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div class="container" style="text-align:center;">
-<h1>MEMBERSHIP OF ACADEMIC BODIES </h1>
+<h1 style="color:red;">MEMBERSHIP OF ACADEMIC BODIES </h1>
   <div>
       <h4><i class="fa fa-check"></i><em> Indian Society for Technical Education -ISTE </em></h4> 
   </div>
@@ -13,7 +13,7 @@
   <div>
      <h4><i class="fa fa-check"></i><em> Membership of Association of Computing Machinery - ACM </em></h4> 
   </div>
-  <h1>MEMBERSHIP OF PROFESSIONAL BODIES </h1>
+  <h1 style="color:red;">MEMBERSHIP OF PROFESSIONAL BODIES </h1>
    
   <div>
       <h4><i class="fa fa-check"></i><em> Life Member - Indian Society for Technical Education - ISTE </em></h4> 
@@ -43,19 +43,30 @@ Certified ], Indian Institute of Technology, Kharagpur  </em></h4>
   
   <% memberships.forEach(function(membership){ %>
     <div> 
-      <h4><i class="fa fa-check"></i><em> <%- membership.membership %></em></h4>
+      <h4>
+        <i class="fa fa-check"></i><em> <%- membership.membership %> </em>
+        <% if(!currentUser){ %>
+                  <%} else {%>
+                <a  class="btn btn-primary" href="/resume/membership/<%= membership._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
+        <%}%>
+       
+
+      </h4>
     </div>
+   
+
 <% }); %>
-  <a class="btn btn-primary" href="/membership/new">add new membership</a>
+  <% if(!currentUser){ %>
+                  <%} else {%>
+  <a class="btn btn-success" href="/membership/new">add new membership <i class="fa fa-arrow-circle-right"></i></a>
+  <%}%>
   <div class="form-group">
-              <a id="back" href="/">GO BACK</a>
+              <a id="back" class="btn btn-primary" style="margin-top:10px;" href="/"><i class="fa fa-arrow-circle-left"></i> GO BACK</a>
            </div>
 </div>
 
 
-<style>
 
-  h1{
-    color:red;
-  }
-</style>
+
+
+<% include partials/footer %>

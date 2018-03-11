@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
 <ul>
                                  <li>
@@ -82,19 +83,26 @@
         <% contributions.forEach(function(contribution){ %>
         <ul>
           <li>
-            <h4><em><%- contribution.contribution %></em></h4><em>
+            <h4>
+              <em><%- contribution.contribution %>
+              </em>
+               <% if(!currentUser){ %>
+                  <%} else {%>
+            <a class="btn btn-primary" href="/resume/contribution/<%= contribution._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
+              <%}%>
+            </h4>
           </li>
         </ul>
+ 
       <% }); %>
-   <a class="btn btn-primary" href="/resume/contribution/new">add new contribution</a>
+  <% if(!currentUser){ %>
+                  <%} else {%>
+   <a class="btn btn-success" style="text-align:center" href="/resume/contribution/new">add new contribution <i class="fa fa-arrow-circle-right"></i></a>
+  <%}%>
       <div class="form-group">
-                  <a id="back" href="/resume">GO BACK</a>
+                  <a id="back" class="btn btn-primary" style="margin-top:10px;
+                                                              text-align:center" href="/resume"> <i class="fa fa-arrow-circle-left"></i> GO BACK</a>
                </div>
       </div>
 
-<style>
-  
-
-
-
-</style>
+<% include partials/footer %>

@@ -12,6 +12,9 @@ var Contribution      = require("./models/contribution");
 var Workshop          = require("./models/workshop");
 var Contact           = require("./models/contact");
 var Membership        = require("./models/membership");
+var Image    = require("./models/image");
+ var cloudinary = require('cloudinary');
+  var multer = require('multer'); 
 
 mongoose.connect("mongodb://localhost/portfolio", {
   useMongoClient: true
@@ -19,6 +22,12 @@ mongoose.connect("mongodb://localhost/portfolio", {
 app.use(methodOverride("_method"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+
+ cloudinary.config({ 
+ cloud_name: 'private1', 
+ api_key: '745187248568767', 
+ api_secret: 'PqKDbZ_YzGi-SsWC5zRkLwHdmIc' 
+ }); 
 
 
 //================================================PASSPORT CONFIGURATION==================================================//
@@ -50,13 +59,30 @@ app.use(function(req,res,next){
 
 
 app.get("/",function(req,res){
-  res.render("home");
+      Image.find({},function(err,images){
+    if (err) {
+      console.log(err);
+    } else {
+      var imagesLength = images.length;
+      res.render('home',{images:images,imagesLength:imagesLength});
+        }
+  })
 });
+
+
+
 
 //=================================================resume route==============================================//
 
 app.get("/resume",function(req,res){
-  res.render("resume");
+  Image.find({},function(err,images){
+    if (err) {
+      console.log(err);
+    } else {
+      var imagesLength = images.length;
+      res.render('resume',{images:images,imagesLength:imagesLength});
+        }
+  })
 });
 
 
@@ -96,7 +122,33 @@ app.post("/resume/publication",function(req,res){
   });
 });
 
-//================================================contribution===================================================//
+//=======================================publication show===========================================================//
+
+app.get("/resume/publication/:id",function(req, res){
+  Publication.findById(req.params.id,function(err,foundPublication){
+      if(err){
+    console.log(err)
+} else{
+  res.render("publicationShow",{publication:foundPublication});
+  
+}});
+});
+
+//==========================================================delete publicationroutes=======================================//
+
+app.delete("/resume/publication/:id",function(req,res){
+  Publication.findByIdAndRemove(req.params.id, function(err){
+     if(err){
+    console.log(err)
+} else{
+  res.redirect("/resume/publication");
+  }
+   });
+});
+
+
+
+//================================================CONTRIBUTION===================================================//
 
 
 
@@ -109,6 +161,8 @@ app.get("/resume/contribution", function(req, res) {
     }
   });
 });
+
+
 
 
 //==================================================new contribution================================================//
@@ -130,6 +184,31 @@ app.post("/resume/contribution",function(req,res){
     }
   });
 });
+
+//=======================================contribution show===========================================================//
+
+app.get("/resume/contribution/:id",function(req, res){
+  Contribution.findById(req.params.id,function(err,foundContributions){
+      if(err){
+    console.log(err)
+} else{
+  res.render("contributionShow",{contribution:foundContributions});
+  
+}});
+});
+
+//==========================================================delete routes=======================================//
+
+app.delete("/resume/contribution/:id",function(req,res){
+  Contribution.findByIdAndRemove(req.params.id, function(err){
+     if(err){
+    console.log(err)
+} else{
+  res.redirect("/resume/contribution");
+  }
+   });
+});
+
 
 
 //================================================workshop===================================================//
@@ -167,42 +246,29 @@ app.get("/resume/workshop/new",function(req,res){
 });
 
 
-//=======================================================Contact=============================================//
+//=======================================workshop show===========================================================//
 
-
-app.get("/contected", function(req, res) {
-  Contact.find({},function(err, contacts){
-    if(err){
-      console.log(err)
-    } else{
-      res.render("newContacts",{contacts:contacts}); 
-    }
-  });
+app.get("/resume/workshop/:id",function(req, res){
+  Workshop.findById(req.params.id,function(err,foundWorkshop){
+      if(err){
+    console.log(err)
+} else{
+  res.render("workshopShow",{workshop:foundWorkshop});
+  
+}});
 });
 
+//==========================================================delete workshop=======================================//
 
-
-app.post("/contact",function(req,res){
-  var contact = { 
-                  name:req.body.Name,
-                  email:req.body.email,
-                  message:req.body.message
-                }
-  Contact.create(contact ,function(err,newContact){
-    if(err){
-      console.log(err);
-    } else{
-      res.redirect("/contact");
-    }
-  });
+app.delete("/resume/workshop/:id",function(req,res){
+  Workshop.findByIdAndRemove(req.params.id, function(err){
+     if(err){
+    console.log(err)
+} else{
+  res.redirect("/resume/workshop");
+  }
+   });
 });
-
-
-app.get("/contact",function(req,res){
-  res.render("contact")
-});
-
-
 
 
 
@@ -241,7 +307,108 @@ app.get("/membership/new",function(req,res){
   res.render("newMembership");
 });
 
+//=======================================membership show===========================================================//
 
+app.get("/resume/membership/:id",function(req, res){
+  Membership.findById(req.params.id,function(err,foundMembership){
+      if(err){
+    console.log(err)
+} else{
+  res.render("membershipShow",{membership:foundMembership});
+  
+}});
+});
+
+//==========================================================delete membership=======================================//
+
+app.delete("/resume/membership/:id",function(req,res){
+  Membership.findByIdAndRemove(req.params.id, function(err){
+     if(err){
+    console.log(err)
+} else{
+  res.redirect("/membership");
+  }
+   });
+});
+
+
+
+
+//=======================================================Contact=============================================//
+
+
+app.get("/contected", function(req, res) {
+  Contact.find({},function(err, contacts){
+    if(err){
+      console.log(err)
+    } else{
+      res.render("newContacts",{contacts:contacts}); 
+    }
+  });
+});
+
+
+
+app.post("/contact",function(req,res){
+  var contact = { 
+                  name:req.body.Name,
+                  email:req.body.email,
+                  message:req.body.message
+                }
+  Contact.create(contact ,function(err,newContact){
+    if(err){
+      console.log(err);
+    } else{
+      res.redirect("/contact");
+    }
+  });
+});
+
+
+app.get("/contact",function(req,res){
+  Image.find({},function(err,images){
+    if (err) {
+      console.log(err);
+    } else {
+      var imagesLength = images.length;
+      res.render('contact',{images:images,imagesLength:imagesLength});
+        }
+  })
+});
+
+
+//========================================upload image==================//
+
+app.get("/imageUpload",function(req,res){
+  res.render("image");
+});
+
+
+
+ var upload = multer({ dest: './uploads/'});
+
+ app.post('/imageUpload', upload.single('file'), function(req,res){
+   
+ 
+    cloudinary.uploader.upload(req.file.path,
+    function(result){
+      
+      var ProfileImage = {
+        ProfileImage:result.secure_url
+      }
+      
+      Image.create(ProfileImage,function(err,image){
+        if (err) {
+          console.log(err)
+        } else {
+          res.redirect("/");
+        }
+      })
+
+     
+
+    })
+ })
 
 
 
@@ -292,7 +459,7 @@ app.post("/login", passport.authenticate("local",{
 
 app.get("/logout",function(req,res){
     req.logout();
-    res.redirect("/login");
+    res.redirect("/");
 });
 
 //==============================================================middleware================================================//

@@ -26,15 +26,15 @@
     
     body{
       font-family: 'Merriweather', serif;
-      
+   
+ 
     }
     .bg-dark {
   background: #000;
   color: #fff; }
 
 #main-header img {
-  width: 100%;
-  height: 100%; }
+  width: 100%; }
 
 #main-header .port-item {
   width: 30%; }
@@ -44,9 +44,7 @@
 #main-header .port-item:hover {
   opacity: 0.8;
   cursor: pointer; }
-    a{
-      color:red;
-    }
+    
 
 @media (min-width: 1199px) {
   .port-item {
@@ -61,18 +59,22 @@
     <header id="main-header">
       <div class="row no-gutters">
         <div class="col-lg-4 col-md-5 col-sm-12 col-xs-12">
-          <div class="img-thumbnail">
-            <img class="img-fluid img-responsive" src="" ><img >
+          <div class="">
+            <img style="height:395px;" src="<%=images[imagesLength-1].ProfileImage%>" ><img>
             </div>
         </div>
         <div class="col-lg-8 col-md-7 col-sm-12 col-xs-12">
           <div class="d-flex flex-column">
             <div class="p-5 bg-dark text-white">
               <div class="name d-flex flex-row align-items-center">
-                <h1 class="display-4">Dr.Pavan G P</h1>
-                <div><i class="fa fa-twitter" ></i></div>
-                <div><i class="fa fa-facebook" ></i></div>
-                <div><i class="fa fa-instagram" ></i></div>
+                <h1 class="display-4"><a  style="color:white;" href="/login">Dr.Pavan G P</a></h1>
+                <div><% if(!currentUser){ %>
+                  <%} else {%>
+                      <a  style="color:white;" href="/contected">New Message</a>
+                      <a  style="color:white;" href="/imageUpload">ProfileImage</a>
+                      <a style="color:white;"  href="/logout">LogOut</a>
+                  <%}%>
+                </div>
               </div>
             </div>
 
@@ -81,16 +83,16 @@
 
             <div>
               <div class="d-flex flex-row text-white align-items-stretch text-center">
-                <div class="port-item p-4 bg-primary" data-toggle="collapse" href="/home">
+                <div class="port-item p-4 bg-primary" >
                   <i class="fa fa-home d-block"></i><a style="color:white;" hrclass="img-thumbnail" href="/"> Home</a>
                 </div>
-                <div class="port-item p-4 bg-success" data-toggle="collapse">
+                <div class="port-item p-4 bg-success">
                   <i class="fa fa-graduation-cap d-block"></i> <a style="color:white;" href="/resume"> Resume</a> 
                 </div>
-                <div class="port-item p-4 bg-warning" data-toggle="collapse" data-target="#work">
+                <div class="port-item p-4 bg-warning" >
                   <i class="fa fa-folder-open d-block"></i><a style="color:white;" href="/membership"> Membership</a>
                 </div>
-                <div class="port-item p-4 bg-danger" data-toggle="collapse" data-target="#contact">
+                <div class="port-item p-4 bg-danger">
                   <i class="fa fa-envelope d-block"></i><a style="color:white;" href="/contact"> Contact</a>
                 </div>
               </div>

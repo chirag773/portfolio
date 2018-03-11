@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <div class="container">
     <ul>
                                     <li>
@@ -32,14 +33,22 @@
   <ul>
     <li>
       <h4>
-      <em><%- workshop.workshop %></em>
+      <em><%- workshop.workshop %></em> 
+        <% if(!currentUser){ %>
+                  <%} else {%>
+        <a  class="btn btn-primary"href="/resume/workshop/<%= workshop._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
+        <%}%>
         </h4>
     </li>
   </ul>
 <% }); %>
-   <a class="btn btn-primary" href="/resume/workshop/new">add new workshop</a>
+  <% if(!currentUser){ %>
+                  <%} else {%>
+   <a class="btn btn-success" style="text-align:center" href="/resume/workshop/new">add new workshop <i class="fa fa-arrow-circle-right"></i></a>
+     <%}%>
   <div class="form-group">
-              <a id="back" href="/resume">GO BACK</a>
+              <a id="back" class="btn btn-primary" style="margin-top:10px;
+                                                          text-align:center" href="/resume"><i class="fa fa-arrow-circle-left"></i> GO BACK</a>
            </div>
   </div>
 
@@ -51,3 +60,5 @@
   
   
 </style>
+
+<% include partials/footer %>

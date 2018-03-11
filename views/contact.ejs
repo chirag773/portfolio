@@ -2,18 +2,25 @@
   
 <!-- CONTACT -->
         <div id="contact">
-          <div class="card card-block bg-danger text-white py-5">
-            <h2 style="text-align:center;">Contact</h2>
-            <p style="text-align:center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, placeat.</p>
+          <div class="card card-block bg-danger text-white py-5" style="text-align:center;">
+            <h2>Contact</h2>
+<!--             <p style="text-align:center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum, placeat.</p> -->
+               <div style="font-size:30px;">
+                <i class="fa fa-twitter" ></i>
+                <i class="fa fa-facebook" ></i>
+                <i class="fa fa-instagram" ></i>
+               </div>
           </div>
           <div class="card card-block py-5">
             <h3 style="text-align:center;">Get In Touch</h3>
-            <p style="text-align:center;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat, inventore atque dolore blanditiis sit repudiandae!</p>
+            <i class="fa fa-arrow-down" style="text-align:center;
+                                               font-size:30px;" aria-hidden="true"></i>
             <form action="/contact" method="POST">
               <div class="form-group">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon bg-danger text-white">
-                    <i class="fa fa-user" style="width:50px;"></i>
+                    <i class="fa fa-user" style="width:50px;
+                                                 font-size:30px;"></i>
                   </span>
                   <input type="text" class="form-control" name="Name" placeholder="Name">
                 </div>
@@ -22,7 +29,8 @@
               <div class="form-group">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon bg-danger text-white">
-                    <i class="fa fa-envelope" style="width:50px;" aria-hidden="true"></i>
+                    <i class="fa fa-envelope" style="width:50px;
+                                                     font-size:30px;" aria-hidden="true"></i>
                   </span>
                   <input type="email" class="form-control" name="email" placeholder="Email">
                 </div>
@@ -31,7 +39,8 @@
               <div class="form-group">
                 <div class="input-group input-group-lg">
                   <span class="input-group-addon bg-danger text-white">
-                    <i class="fa fa-pencil d-block" style="width:50px;"></i>
+                    <i class="fa fa-pencil d-block" style="width:50px;
+                                                           font-size:30px;"></i>
                   </span>
                   <textarea rows="5" class="form-control" name="message"placeholder="Message"></textarea>
                 </div>
@@ -41,4 +50,4 @@
           </div>
         </div>
 
-      
+   <% include partials/footer %>   
