@@ -86,8 +86,41 @@ app.get("/resume",function(req,res){
 });
 
 
+//========================================upload image==================//
 
-//===================================================publication=================================================//
+app.get("/imageUpload",function(req,res){
+  res.render("image");
+});
+
+
+
+ var upload = multer({ dest: './uploads/'});
+
+ app.post('/imageUpload', upload.single('file'), function(req,res){
+   
+ 
+    cloudinary.uploader.upload(req.file.path,
+    function(result){
+      
+      var ProfileImage = {
+        ProfileImage:result.secure_url
+      }
+      
+      Image.create(ProfileImage,function(err,image){
+        if (err) {
+          console.log(err)
+        } else {
+          res.redirect("/");
+        }
+      })
+
+     
+
+    })
+ })
+
+
+//===================================================publication====================================================================//
 
 
 
@@ -134,7 +167,7 @@ app.get("/resume/publication/:id",function(req, res){
 }});
 });
 
-//==========================================================delete publicationroutes=======================================//
+//==========================================================delete publicationroutes====================================//
 
 app.delete("/resume/publication/:id",function(req,res){
   Publication.findByIdAndRemove(req.params.id, function(err){
@@ -148,7 +181,7 @@ app.delete("/resume/publication/:id",function(req,res){
 
 
 
-//================================================CONTRIBUTION===================================================//
+//================================================CONTRIBUTION======================================================================//
 
 
 
@@ -211,7 +244,7 @@ app.delete("/resume/contribution/:id",function(req,res){
 
 
 
-//================================================workshop===================================================//
+//================================================workshop=========================================================================//
 
 
 
@@ -273,11 +306,23 @@ app.delete("/resume/workshop/:id",function(req,res){
 
 
 
-//================================================membership===================================================//
+//================================================membership========================================================================//
+
+
+app.get("/skills",function(req,res){
+  Image.find({},function(err,images){
+    if (err) {
+      console.log(err);
+    } else {
+      var imagesLength = images.length;
+      res.render('skills',{images:images,imagesLength:imagesLength});
+        }
+  })
+});
 
 
 
-app.get("/membership", function(req, res) {
+app.get("/skills/membership", function(req, res) {
   Membership.find({},function(err, memberships){
     if(err){
       console.log(err)
@@ -291,25 +336,25 @@ app.get("/membership", function(req, res) {
 
 //==================================================new membership================================================//
 
-app.post("/membership",function(req,res){
+app.post("/skills/membership",function(req,res){
   var membership = { membership:req.body.membership}
   Membership.create(membership ,function(err,newMembership){
     if(err){
       console.log(err);
     } else{
-      res.redirect("/membership");
+      res.redirect("/skills/membership");
     }
   });
 });
 
 
-app.get("/membership/new",function(req,res){
+app.get("/skills/membership/new",function(req,res){
   res.render("newMembership");
 });
 
 //=======================================membership show===========================================================//
 
-app.get("/resume/membership/:id",function(req, res){
+app.get("/skills/membership/:id",function(req, res){
   Membership.findById(req.params.id,function(err,foundMembership){
       if(err){
     console.log(err)
@@ -321,12 +366,12 @@ app.get("/resume/membership/:id",function(req, res){
 
 //==========================================================delete membership=======================================//
 
-app.delete("/resume/membership/:id",function(req,res){
+app.delete("/skills/membership/:id",function(req,res){
   Membership.findByIdAndRemove(req.params.id, function(err){
      if(err){
     console.log(err)
 } else{
-  res.redirect("/membership");
+  res.redirect("/skills/membership");
   }
    });
 });
@@ -334,7 +379,23 @@ app.delete("/resume/membership/:id",function(req,res){
 
 
 
-//=======================================================Contact=============================================//
+
+
+//================================================work===============================================//
+
+
+
+app.get("/skills/work", function(req, res) {
+ 
+      res.render("work"); 
+ 
+});
+
+
+
+
+
+//=======================================================Contact====================================================================//
 
 
 app.get("/contected", function(req, res) {
@@ -375,45 +436,6 @@ app.get("/contact",function(req,res){
         }
   })
 });
-
-
-//========================================upload image==================//
-
-app.get("/imageUpload",function(req,res){
-  res.render("image");
-});
-
-
-
- var upload = multer({ dest: './uploads/'});
-
- app.post('/imageUpload', upload.single('file'), function(req,res){
-   
- 
-    cloudinary.uploader.upload(req.file.path,
-    function(result){
-      
-      var ProfileImage = {
-        ProfileImage:result.secure_url
-      }
-      
-      Image.create(ProfileImage,function(err,image){
-        if (err) {
-          console.log(err)
-        } else {
-          res.redirect("/");
-        }
-      })
-
-     
-
-    })
- })
-
-
-
-
-
 
 
 

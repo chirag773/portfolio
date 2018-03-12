@@ -47,7 +47,7 @@ Certified ], Indian Institute of Technology, Kharagpur  </em></h4>
         <i class="fa fa-check"></i><em> <%- membership.membership %> </em>
         <% if(!currentUser){ %>
                   <%} else {%>
-                <a  class="btn btn-primary" href="/resume/membership/<%= membership._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
+                <a  class="btn btn-primary" href="/skills/membership/<%= membership._id%>">read more <i class="fa fa-arrow-circle-right"></i></a>
         <%}%>
        
 
@@ -58,10 +58,10 @@ Certified ], Indian Institute of Technology, Kharagpur  </em></h4>
 <% }); %>
   <% if(!currentUser){ %>
                   <%} else {%>
-  <a class="btn btn-success" href="/membership/new">add new membership <i class="fa fa-arrow-circle-right"></i></a>
+  <a class="btn btn-success" href="/skills/membership/new">add new membership <i class="fa fa-arrow-circle-right"></i></a>
   <%}%>
   <div class="form-group">
-              <a id="back" class="btn btn-primary" style="margin-top:10px;" href="/"><i class="fa fa-arrow-circle-left"></i> GO BACK</a>
+              <a id="back" class="btn btn-primary" style="margin-top:10px;" href="/skills"><i class="fa fa-arrow-circle-left"></i> GO BACK</a>
            </div>
 </div>
 
