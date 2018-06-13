@@ -23,11 +23,7 @@ app.use(methodOverride("_method"));
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 
- cloudinary.config({ 
- cloud_name: 'private1', 
- api_key: '745187248568767', 
- api_secret: 'PqKDbZ_YzGi-SsWC5zRkLwHdmIc' 
- }); 
+ 
 
 
 //================================================PASSPORT CONFIGURATION==================================================//
